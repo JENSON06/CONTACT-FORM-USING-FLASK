@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Add Materialize CSS link here if not already included -->
+</head>
+<body>
+
+<div class="container">
+    <form class="contact-form" action="{{ url_for('submit_form') }}" method="post">
+        <div class="row">
+            <div class="input-group col s12 m6 l6">
+               
+                <input type="text" class="validate" id="name" name="name" required>
+                <label for="name">Name</label>
+            </div>
+
+            <div class="input-group col s12 m6 l6">
+
+                <input type="tel" class="validate" id="phone" name="phone_no">
+                <label for="phone">Phone</label>
+            </div>
+
+            <div class="input-group col s12">
+                <input type="email" class="validate" id="email" name="email" required>
+                <label for="email">Email</label>
+            </div>
+
+            <div class="input-group col s12">
+                <textarea class="materialize-textarea validate" id="message" name="message" required></textarea>
+                <label for="message">Message</label>
+            </div>
+
+            <button type="submit" class="btn waves-effect waves-light">
+                <span style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">Submit</span>
+            </button>
+            
+            <div class="row">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="col s12">
+                            <div class="card-panel teal lighten-2 white-text">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
